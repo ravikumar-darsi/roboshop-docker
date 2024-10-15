@@ -77,6 +77,67 @@ commands.
 3. docker ps 
 access the ip in the browser , if the categories are not coming then
 
-4. docker exec -it 
+4. docker exec -it <web-container-id> bash
+5. curl http://catalogue:8080/health 
+6. curl localhost/api/catalogue/health 
+7. cd /etc/nginx 
+8. ls 
+
+discussion about the docker compose 
+installation: 
+serach it in the google  
+
+docker-compose will a network, creates volumes. attach network and volumes.
+
+created a docker-compose file and 
+
+networks:
+  default:
+    external:
+      name: roboshop
+services:
+  # docker run -d --name mongodb --network=roboshop mongodb:1.0
+  mongodb:
+    image: mongodb:1.0
+    networks:
+      - roboshop
+
+  catalogue:
+    image: catalogue:1.0
+    networks:
+      - roboshop
+    depends_on:
+      - mongodb
+
+  web:
+    image: web:1.0
+    ports:
+      - "80:80"
+    depends_on:
+      - catalogue
+and then pushed into the github as a first commit let's say 
+
+delete every running container with 
+docker rm -f `docker ps -a -q` 
+
+After the trail run of the compose file
+--> 4. Create user image 
+commands:
+1. docker build -t user:1.0 .
+---> 5.  Create Cart image
+command:
+1. docker build -t cart:1.0 .
+
+---> 6. Create mysql image
+command:
+1. docker build -t mysql:1.0 .
+
+Note: In Docker we have multi stage builds. 
 
 
+--> 7.  Create shipping image
+command:
+1. docker build -t shipping:1.0 .
+
+---> 8. for rabbitmq we no need to create a specific image 
+we can make use of offical image 
