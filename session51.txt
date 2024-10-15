@@ -1,0 +1,82 @@
+In this session: 51
+created a new git repo and started working on roboshop-docker...
+
+we are going to create a dockerfile, create images, run them as a container for the following.
+1. mongodb
+2. mysql
+3. redis
+4. rabbitmq
+5. catalogue
+6. cart 
+7. shipping
+8. payment
+9. web
+
+--> 1. First started with the creation mongodb
+From AWS cloud take t3.medium instance and install docker in the ec2 instance.
+log into the instance and the clone the roboshop-docker repository and
+then build the mongo image.
+commands: 
+1. docker build -t mongodb:1.0 .
+2. docker run -d --name mongodb mongodb:1.0 
+3. docker ps 
+4. docker logs mongodb 
+
+--> 2. Secondly we started with catalogue folder creation and then created dockerfile
+used node 18 image and rest is coded in the dockerfile and also added supported file. 
+commands:
+1. docker build -t catalogue:1.0 .
+2. docker run -d --name catalogue catalogue:1.0
+3. docker ps
+4. docker logs catalogue 
+
+you will get error saying MongoDB connection error 
+
+why this error coming ? we need to know about networking
+
+run ifconfig  command 
+
+when we do docker inspect on both mongo and catalogue we get know that
+
+"Gateway": "172.17.0.1",
+"IPAddress": "172.17.0.3" ----> catalogue
+"IPAddress": "172.17.0.2" ----> mongodb
+
+The disadvantage here is container can't communicate with each other thriugh names
+if they are using docker's default network.
+
+There two types of newtork in docker 
+1. Host Network 
+2. Bridge Network
+
+roboshop project can create its oen network, 
+commands
+1. docker network 
+2. docker network create roboshop 
+3. docker network ls 
+Note: By default it is bridge network
+4. then run  ifconfig
+5. docker rm -f `docker ps -a -q`
+Here, we removed all running contaainer and creating
+back all the container in the roboshop network
+6. docker run -d --name mongodb --network=roboshop mongodb:1.0 
+7. docker run -d --name catalogue --network=roboshop catalogue:1.0 
+8. docker inspect mongodb
+9. docker inspect catalogue
+10. docker logs catalogue
+
+Now, the connection is happening through container names in the created newtork.
+
+
+--> 3. After Catalogue, we have Dockerfile for the web component, 
+added all the supporting files related to web 
+and the pushed into the git. 
+commands.
+1. docker build -t web:1.0 .
+2. docker run -d -p 80:80 --name web --network=roboshop web:1.0
+3. docker ps 
+access the ip in the browser , if the categories are not coming then
+
+4. docker exec -it 
+
+
