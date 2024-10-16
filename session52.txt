@@ -1,0 +1,42 @@
+Started with install of docker via shell script
+with command
+curl https://raw.githubusercontent.com/ravikumar-darsi/roboshop-docker/refs/heads/main/docker-installation.sh | sudo bash
+
+this script has docker and docker compose as well.
+
+while doing the session 51 we got error in the payment image.
+now, we are going to slove it, small change in payment.py file which is purely related to development
+commands:
+1. git clone
+2. ls
+3. for i in mongodb mysql catalogue cart user shipping payment web ; do cd $i ; docker build -t $i:1.0 . ; cd .. ; done 
+4. docker network create roboshop 
+5. changed from 1.0 to v1.0 
+6. docker images 
+7. docker compose up -d  <Make sure to create roboshop network >
+
+changed image from node:18 node:18.19.1-alpine3.19 for cart user catalogue
+then pushed the changes to git and pulled in the instance.
+
+re run the command
+1.for i in mongodb mysql catalogue cart user shipping payment web ; do cd $i ; docker build -t $i:1.0 . ; cd .. ; done 
+2. docker images 
+and observe the images the sizes. 
+
+docker compose up -d 
+
+for checking whether the container are properly working or not. 
+
+best practices:
+- use official images.
+- reduce image size by using bare minimum OS like alpine, distro, core OS, etc.
+- use multi stage builds 
+- use dokcer volumes to persist the data
+- use custom network to isolate containers from other projects. 
+
+Docker Volumes:
+--------------------------
+when you remove docker container, what happens to data ?
+containers are ephemeral/temporary, the data by default will be deleted.
+
+
