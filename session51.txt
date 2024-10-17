@@ -39,7 +39,7 @@ why this error coming ? we need to know about networking
 
 run ifconfig  command 
 
-when we do docker inspect on both mongo and catalogue we get know that
+when we do docker inspect on the containers mongodb and catalogue we get know that
 
 "Gateway": "172.17.0.1",
 "IPAddress": "172.17.0.3" ----> catalogue
