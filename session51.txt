@@ -16,6 +16,9 @@ we are going to create a dockerfile, create images, run them as a container for 
 From AWS cloud take t3.medium instance and install docker in the ec2 instance. follow the offical doc of docker
 log into the instance and the clone the roboshop-docker repository and
 then build the mongo image.
+give add docker to the centos group 
+usrmod -aG docker centos
+exit out of the instance and re login into the instance
 commands: 
 1. docker build -t mongodb:1.0 .
 2. docker run -d --name mongodb mongodb:1.0 
