@@ -15,7 +15,8 @@ commands:
 6. docker images 
 7. docker compose up -d  <Make sure to create roboshop network >
 
-changed image from node:18 node:18.19.1-alpine3.19 for cart user catalogue
+changed image from node:18 node:18.19.1-alpine3.19 for cart user catalogue 
+but why we changed, because to reduce the size of the image < let's before 1 GB and now 200 MB > 
 then pushed the changes to git and pulled in the instance.
 
 re run the command
