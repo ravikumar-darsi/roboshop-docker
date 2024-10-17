@@ -60,8 +60,8 @@ commands:
 Note: By default it is bridge network
 4. then run  ifconfig
 5. docker rm -f `docker ps -a -q`
-Here, we removed all running contaainer and creating
-back all the container in the roboshop network
+
+Here, we removed all running container and creating back all the container in the roboshop network by using commands: 
 6. docker run -d --name mongodb --network=roboshop mongodb:1.0 
 7. docker run -d --name catalogue --network=roboshop catalogue:1.0 
 8. docker inspect mongodb
@@ -70,9 +70,7 @@ back all the container in the roboshop network
 
 Now, the connection is happening through container names in the created newtork.
 
-
---> 3. After Catalogue, we have Dockerfile for the web component, 
-added all the supporting files related to web 
+--> 3. After Catalogue, we have Dockerfile for the Web component, added all the supporting files related to web 
 and the pushed into the git. 
 commands.
 1. docker build -t web:1.0 .
