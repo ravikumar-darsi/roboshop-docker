@@ -45,15 +45,15 @@ when we do docker inspect on the containers mongodb and catalogue we get know th
 "IPAddress": "172.17.0.3" ----> catalogue
 "IPAddress": "172.17.0.2" ----> mongodb
 
-The disadvantage here is container can't communicate with each other thriugh names
-if they are using docker's default network.
+The disadvantage here is container can't communicate with each other through names
+if they are using docker's default network as their network .
 
 There two types of newtork in docker 
 1. Host Network 
 2. Bridge Network
 
-roboshop project can create its oen network, 
-commands
+we can a separate network for the roboshop project by using below instructions: 
+commands:
 1. docker network 
 2. docker network create roboshop 
 3. docker network ls 
