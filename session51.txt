@@ -12,7 +12,7 @@ we are going to create a dockerfile, create images, run them as a container for 
 8. payment
 9. web
 
---> 1. First started with the creation mongodb
+--> 1. First started with the creation mongodb image
 From AWS cloud take t3.medium instance and install docker in the ec2 instance.
 log into the instance and the clone the roboshop-docker repository and
 then build the mongo image.
