@@ -20,8 +20,8 @@ give add docker to the centos group
 usrmod -aG docker centos
 exit out of the instance and re login into the instance
 commands: 
-1. docker build -t mongodb:1.0 .
-2. docker run -d --name mongodb mongodb:1.0 
+1. docker build -t mongodb:1.0 .  ---> creates mongodb images
+2. docker run -d --name mongodb mongodb:1.0  ---> creates a container out of the image in the detached mode
 3. docker ps 
 4. docker logs mongodb 
 
