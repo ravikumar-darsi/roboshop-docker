@@ -31,8 +31,14 @@ for checking whether the container are properly working or not.
 best practices:
 - use official images.
 - reduce image size by using bare minimum OS like alpine, distro, core OS, etc.
-- use multi stage builds 
-- use dokcer volumes to persist the data
+- use multi stage builds
+     mostly multi stage builds are used for Java projects:
+     Source Code ---> complie ---> byte code ---> run byte code 
+     JDK ---> Java Development Kit 
+     JRE --> Java Runtime Environment
+     JDK > JRE and JRE is subset of JDK 
+
+- use docker volumes to persist the data
 - use custom network to isolate containers from other projects. 
 
 Docker Volumes:
@@ -40,4 +46,16 @@ Docker Volumes:
 when you remove docker container, what happens to data ?
 containers are ephemeral/temporary, the data by default will be deleted.
 
+Docker volumes are two types;
+1. unamed volumes
+2. named volumes 
+
+
+Docker Architecture: 
+---------------------------
+docker run ---> docker deamon or docker engine ---> checks for local or else fetch it from docker hub --> and creates a container 
+
+Docker Layers:
+------------------------
+runs one by one like based out of first command and runs the next coming command. 
 
