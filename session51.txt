@@ -12,11 +12,11 @@ we are going to create a dockerfile, create images, run them as a container for 
 8. payment
 9. web
 
---> 1. First started with the creation mongodb image
+--> 1. First started with the creation mongodb image:
 From AWS cloud take t3.medium instance and install docker in the ec2 instance. follow the offical doc of docker
 log into the instance and the clone the roboshop-docker repository and
 then build the mongo image.
-give add docker to the centos group 
+NOTE:  Add docker to the centos group 
 usrmod -aG docker centos
 exit out of the instance and re login into the instance
 commands: 
@@ -25,7 +25,7 @@ commands:
 3. docker ps 
 4. docker logs mongodb 
 
---> 2. Secondly we started with catalogue folder creation and then created dockerfile
+--> 2. Secondly we started with catalogue folder creation and then created dockerfile.
 used node 18 image and rest is coded in the dockerfile and also added supported file. 
 commands:
 1. docker build -t catalogue:1.0 .
@@ -52,14 +52,14 @@ There two types of newtork in docker
 1. Host Network 
 2. Bridge Network
 
-we can a separate network for the roboshop project by using below instructions: 
+we can create a separate network for the roboshop project by using below instructions: 
 commands:
 1. docker network 
 2. docker network create roboshop 
 3. docker network ls 
 Note: By default it is bridge network
 4. then run  ifconfig
-5. docker rm -f `docker ps -a -q`
+5. docker rm -f `docker ps -a -q` ---> removes all running containers at a time. 
 
 Here, we removed all running container and creating back all the container in the roboshop network by using commands: 
 6. docker run -d --name mongodb --network=roboshop mongodb:1.0 
